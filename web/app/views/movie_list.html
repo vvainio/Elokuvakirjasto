@@ -1,0 +1,9 @@
+<h1>Elokuvalista</h1>
+
+<ul>
+  <li ng-repeat="movie in movies">
+    <p>{{movie.title}} ({{movie.year}} - {{movie.director}})</p>
+  </li>
+</ul>
+
+<a ng-href="#/movies/new">Lisää elokuva</a>

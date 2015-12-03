@@ -3,10 +3,49 @@
 <ul>
   <li ng-repeat="movie in movies">
     <p>
-      <a ng-href="#/movies/{{movie.$id}}">{{movie.title}}</a>
+      <a ng-href="#/movies/{{movie.$id}}">{{movie.title}} ({{movie.year}})</a>
       <button ng-click="deleteMovie(movie)">Poista</button>
     </p>
   </li>
 </ul>
 
 <a ng-href="#/movies/new">Lisää elokuva</a>
+
+<hr>
+
+<h4>Elokuvahaku</h4>
+
+<p>Hae elokuvia nimen tai julkaisuvuoden perusteella.</p>
+
+<p>
+  <label>
+    Nimi
+    <input type="text" ng-model="search.name">
+  </label>
+</p>
+
+<p>
+  <label>
+    Vuosi
+    <input type="text" ng-model="search.year">
+  </label>
+</p>
+
+<button ng-click="findMovie()">Hae</button>
+
+<p>
+  <ng-pluralize ng-show="searchResults"
+                count="searchResults.length"
+                when="{
+                  '0': 'Hakuehdoilla ei löytynyt yhtään elokuvaa.',
+                  '1': 'Hakuehdoilla löytyi {} elokuva',
+                  'other': 'Hakuehdoilla löytyi {} elokuvaa'
+                }">
+  </ng-pluralize>
+</p>
+
+<ul>
+  <li ng-repeat="movie in searchResults">
+    <a ng-href="http://www.imdb.com/title/{{movie.imdbID}}" target="_blank">{{movie.Title}} ({{movie.Year}})</a>
+  </li>
+</ul>

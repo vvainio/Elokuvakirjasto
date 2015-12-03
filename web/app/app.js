@@ -6,6 +6,10 @@ movieApp.config(function ($routeProvider) {
       controller: 'MovieListCtrl',
       templateUrl: 'app/views/movie_list.html'
     })
+    .when('/movies/new', {
+      controller: 'AddMovieCtrl',
+      templateUrl: 'app/views/add_movie.html'
+    })
     .when('/movies/:key', {
       controller: 'ShowMovieCtrl',
       templateUrl: 'app/views/show_movie.html'
@@ -14,11 +18,11 @@ movieApp.config(function ($routeProvider) {
       controller: 'EditMovieCtrl',
       templateUrl: 'app/views/edit_movie.html'
     })
-    .when('/movies/new', {
-      controller: 'AddMovieCtrl',
-      templateUrl: 'app/views/add_movie.html'
-    })
     .otherwise({
       redirectTo: '/movies'
     });
+});
+
+movieApp.config(function ($httpProvider) {
+  delete $httpProvider.defaults.headers.common["X-Requested-With"];
 });

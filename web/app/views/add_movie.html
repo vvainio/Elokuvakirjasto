@@ -4,7 +4,7 @@
   <p>
     <label>
       Nimi:
-      <input type="text" ng-model="title" required>
+      <input type="text" ng-model="movie.title" required>
     </label>
     <div ng-show="movieForm.title.$invalid && movieForm.title.$dirty">
       Nimi on pakollinen!
@@ -14,7 +14,7 @@
   <p>
     <label>
       Vuosi:
-      <input type="number" min="1900" max="2100" ng-model="year" required>
+      <input type="number" min="1900" max="2100" ng-model="movie.year" required>
     </label>
     <div ng-show="movieForm.title.$invalid && movieForm.title.$dirty">
       Vuosi on pakollinen!
@@ -24,7 +24,7 @@
   <p>
     <label>
       Ohjaaja:
-      <input type="text" ng-model="director" required>
+      <input type="text" ng-model="movie.director" required>
     </label>
     <div ng-show="movieForm.title.$invalid && movieForm.title.$dirty">
       Ohjaaja on pakollinen!
@@ -34,7 +34,7 @@
   <p>
     <label>
       Kuvaus:
-      <textarea ng-model="description" required></textarea>
+      <textarea ng-model="movie.description" required></textarea>
     </label>
     <div ng-show="movieForm.title.$invalid && movieForm.title.$dirty">
       Kuvaus on pakollinen!

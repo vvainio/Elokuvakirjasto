@@ -2,7 +2,10 @@
 
 <ul>
   <li ng-repeat="movie in movies">
-    <p>{{movie.title}} ({{movie.year}} - {{movie.director}})</p>
+    <p>
+      <a ng-href="#/movies/{{movie.$id}}">{{movie.title}}</a>
+      <button ng-click="deleteMovie(movie)">Poista</button>
+    </p>
   </li>
 </ul>
 

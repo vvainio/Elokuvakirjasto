@@ -16,6 +16,10 @@ describe('Add movie', function(){
 
         addMovie: function (movie) {
           movies.push(movie);
+        },
+
+        isValid: function (movie) {
+          return movie.title && movie.year && movie.director && movie.description;
         }
       };
     })();

@@ -3,15 +3,8 @@ movieApp.controller('AddMovieCtrl', function ($scope, FirebaseService) {
   $scope.movie = {};
 
   $scope.addMovie = function () {
-    if (isValid()) {
+    if (FirebaseService.isValid($scope.movie)) {
       FirebaseService.addMovie($scope.movie);
     }
   };
-
-  function isValid() {
-    return $scope.movie.title &&
-           $scope.movie.year &&
-           $scope.movie.director &&
-           $scope.movie.description;
-  }
 });

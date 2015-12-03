@@ -6,7 +6,25 @@ movieApp.service('FirebaseService', function ($firebaseArray) {
     return movies;
   };
 
+  this.getMovie = function (key, done) {
+    movies.$loaded(function () {
+      done(movies.$getRecord(key));
+    });
+  };
+
   this.addMovie = function (movie) {
     movies.$add(movie);
+  };
+
+  this.updateMovie = function (movie) {
+    movies.$save(movie);
+  };
+
+  this.deleteMovie = function (movie) {
+    movies.$remove(movie);
+  };
+
+  this.isValid = function (movie) {
+    return movie.title && movie.year && movie.director && movie.description;
   };
 });

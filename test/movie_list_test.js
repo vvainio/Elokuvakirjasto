@@ -25,11 +25,16 @@ describe('Movie list', function(){
       return {
         getMovies: function () {
           return movies;
+        },
+
+        deleteMovie: function () {
+          movies.pop();
         }
       };
     })();
 
     spyOn(FirebaseServiceMock, 'getMovies').and.callThrough();
+    spyOn(FirebaseServiceMock, 'deleteMovie').and.callThrough();
 
     inject(function($controller, $rootScope) {
       scope = $rootScope.$new();
@@ -56,6 +61,11 @@ describe('Movie list', function(){
   * käyttämällä toBeCalled-oletusta.
   */
   it('should be able to remove a movie', function(){
-    expect(true).toBe(false);
+    expect(scope.movies.length).toBe(2);
+    expect(FirebaseServiceMock.getMovies).toHaveBeenCalled();
+    scope.deleteMovie(scope.movies[0]);
+    expect(FirebaseServiceMock.deleteMovie).toHaveBeenCalled();
+    expect(scope.movies.length).toBe(1);
+    expect(scope.movies[0].title).toBe('The Matrix'); // removed correct movie
   });
 });

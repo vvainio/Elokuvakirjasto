@@ -1,49 +1,56 @@
 describe('Show movie', function(){
-	var controller, scope;
+  var controller, scope;
 
-	var FirebaseServiceMock, RouteParamsMock;
+  var FirebaseServiceMock, RouteParamsMock;
 
-  	beforeEach(function(){
-  		// Lisää moduulisi nimi tähän
-    	module('MyAwesomeModule');
+  beforeEach(function(){
+    module('movieApp');
 
-    	FirebaseServiceMock = (function(){
-			return {
-				// Toteuta FirebaseServicen mockatut metodit tähän
-			}
-		})();
+    FirebaseServiceMock = (function(){
+      var movie = {
+        title: 'The Matrix',
+        year: 1999,
+        director: 'The Wachowski Brothers',
+        description: 'A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.'
+      };
 
-		RouteParamsMock = (function(){
-			return {
-				// Toteuta mockattu $routeParams-muuttuja tähän
-			}
-		});
+      return {
+        getMovie: function (key, done) {
+          return (key === 'foo') ? done(movie) : done(null);
+        }
+      };
+    })();
 
-		// Lisää vakoilijat
-	    // spyOn(FirebaseServiceMock, 'jokuFunktio').and.callThrough();
+    RouteParamsMock = (function(){
+      return {
+        key: 'foo'
+      };
+    });
 
-    	// Injektoi toteuttamasi kontrolleri tähän
-	    inject(function($controller, $rootScope) {
-	      scope = $rootScope.$new();
-	      // Muista vaihtaa oikea kontrollerin nimi!
-	      controller = $controller('MyAwesomeController', {
-	        $scope: scope,
-	        FirebaseService: FirebaseServiceMock,
-	       	$routePrams: RouteParamsMock
-	      });
-	    });
-  	});
+    spyOn(FirebaseServiceMock, 'getMovie').and.callThrough();
 
-  	/*
-  	* Testaa alla esitettyjä toimintoja kontrollerissasi
-  	*/
+    inject(function($controller, $rootScope) {
+      scope = $rootScope.$new();
+      controller = $controller('ShowMovieCtrl', {
+        $scope: scope,
+        FirebaseService: FirebaseServiceMock,
+        $routeParams: RouteParamsMock()
+      });
+    });
+  });
 
-  	/* 
-  	* Testaa, että Firebasesta (mockilta) saatu elokuva löytyy kontrollerista.
-  	* Testaa myös, että Firebasea käyttävästä palvelusta kutsutaan oikeaa funktiota
-  	* käyttämällä toBeCalled-oletusta.
-	*/
-	it('should show current movie from Firebase', function(){
-		expect(true).toBe(false);
-	});
+  /*
+  * Testaa alla esitettyjä toimintoja kontrollerissasi
+  */
+
+  /*
+  * Testaa, että Firebasesta (mockilta) saatu elokuva löytyy kontrollerista.
+  * Testaa myös, että Firebasea käyttävästä palvelusta kutsutaan oikeaa funktiota
+  * käyttämällä toBeCalled-oletusta.
+  */
+  it('should show current movie from Firebase', function(){
+    expect(RouteParamsMock().key).toBe('foo');
+    expect(scope.movie.title).toBe('The Matrix');
+    expect(FirebaseServiceMock.getMovie).toHaveBeenCalled();
+  });
 });

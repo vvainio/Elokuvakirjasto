@@ -1,4 +1,4 @@
-movieApp.controller('MovieListCtrl', function ($scope, FirebaseService, omdbService) {
+movieApp.controller('MovieListCtrl', function ($rootScope, $scope, FirebaseService, omdbService) {
   $scope.movies = FirebaseService.getMovies();
 
   $scope.deleteMovie = function (movie) {

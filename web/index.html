@@ -7,6 +7,10 @@
     <title>Elokuvakirjasto</title>
   </head>
   <body ng-app="movieApp">
+    <a ng-href="#/login" ng-hide="isLoggedIn">Kirjaudu sisään tai rekisteröidy</a>
+    <a ng-href="#/movies" ng-click="logOut()" ng-show="isLoggedIn">Kirjaudu ulos</a>
+    <br/>
+
     <div ng-view></div>
 
     <script src="bower_components/angular/angular.min.js"></script>
@@ -19,7 +23,9 @@
     <script src="app/controllers/edit_movie.js"></script>
     <script src="app/controllers/movie_list.js"></script>
     <script src="app/controllers/show_movie.js"></script>
+    <script src="app/controllers/user.js"></script>
     <script src="app/services/firebase.js"></script>
     <script src="app/services/omdb.js"></script>
+    <script src="app/services/authentication.js"></script>
   </body>
 </html>

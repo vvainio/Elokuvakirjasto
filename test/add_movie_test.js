@@ -31,7 +31,8 @@ describe('Add movie', function(){
       scope = $rootScope.$new();
       controller = $controller('AddMovieCtrl', {
         $scope: scope,
-        FirebaseService: FirebaseServiceMock
+        FirebaseService: FirebaseServiceMock,
+        currentAuth: true
       });
     });
   });

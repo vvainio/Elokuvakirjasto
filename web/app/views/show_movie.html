@@ -6,4 +6,4 @@
 <p>Ohjaaja: {{movie.director}}</p>
 <p>Kuvaus: {{movie.description}}</p>
 
-<a ng-href="#/movies/{{movie.$id}}/edit">Muokkaa tietoja</a>
+<a ng-href="#/movies/{{movie.$id}}/edit" ng-show="isLoggedIn">Muokkaa tietoja</a>

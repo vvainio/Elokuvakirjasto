@@ -4,12 +4,12 @@
   <li ng-repeat="movie in movies">
     <p>
       <a ng-href="#/movies/{{movie.$id}}">{{movie.title}} ({{movie.year}})</a>
-      <button ng-click="deleteMovie(movie)">Poista</button>
+      <button ng-click="deleteMovie(movie)" ng-show="$rootScope.isLoggedIn">Poista</button>
     </p>
   </li>
 </ul>
 
-<a ng-href="#/movies/new">Lisää elokuva</a>
+<a ng-href="#/movies/new" ng-show="isLoggedIn">Lisää elokuva</a>
 
 <hr>
 

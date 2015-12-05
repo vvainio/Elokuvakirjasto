@@ -55,7 +55,8 @@ describe('Edit movie', function(){
       controller = $controller('EditMovieCtrl', {
         $scope: scope,
         FirebaseService: FirebaseServiceMock,
-        $routeParams: RouteParamsMock()
+        $routeParams: RouteParamsMock(),
+        currentAuth: true
       });
     });
   });

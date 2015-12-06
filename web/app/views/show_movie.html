@@ -1,9 +1,10 @@
-<a ng-href="#/movies">Takaisin elokuvalistaan</a>
-
 <h1>{{movie.title}}</h1>
 
-<p>Vuosi: {{movie.year}}</p>
-<p>Ohjaaja: {{movie.director}}</p>
-<p>Kuvaus: {{movie.description}}</p>
+<ul>
+  <li><strong>Ohjaaja:</strong> {{movie.director}}</li>
+  <li><strong>Vuosi:</strong> {{movie.year}}</li>
+</ul>
 
-<a ng-href="#/movies/{{movie.$id}}/edit" ng-show="isLoggedIn">Muokkaa tietoja</a>
+<p>{{movie.description}}</p>
+
+<a class="btn btn-primary" ng-href="#/movies/{{movie.$id}}/edit" ng-show="isLoggedIn">Muokkaa tietoja</a>

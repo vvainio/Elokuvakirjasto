@@ -4,19 +4,46 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <title>Elokuvakirjasto</title>
   </head>
   <body ng-app="movieApp">
-    <a ng-href="#/login" ng-hide="isLoggedIn">Kirjaudu sisään tai rekisteröidy</a>
-    <a ng-href="#/movies" ng-click="logOut()" ng-show="isLoggedIn">Kirjaudu ulos</a>
-    <br/>
+    <div class="container">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#/movies">Elokuvakirjasto</a>
+          </div>
 
-    <div ng-view></div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li><a ng-href="#/movies">Elokuvat</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><button ng-click="logIn()" ng-show="!isLoggedIn" class="btn btn-default navbar-btn">Kirjaudu sisään tai rekisteröidy</button></li>
+              <li><button ng-click="logOut()" ng-show="isLoggedIn" class="btn btn-default navbar-btn">Kirjaudu ulos</button></li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+
+      <div ng-view></div>
+    </div>
 
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/angular-route/angular-route.min.js"></script>
     <script src="bower_components/firebase/firebase.js"></script>
     <script src="bower_components/angularfire/dist/angularfire.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <script src="app/app.js"></script>
     <script src="app/controllers/add_movie.js"></script>

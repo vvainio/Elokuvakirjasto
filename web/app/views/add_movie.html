@@ -1,45 +1,37 @@
-<a ng-href="#/movies">Takaisin elokuvalistaan</a>
+<h1>Lisää elokuva</h1>
 
 <form name="movieForm">
-  <p>
-    <label>
-      Nimi:
-      <input type="text" ng-model="movie.title" required>
-    </label>
-    <div ng-show="movieForm.title.$invalid && movieForm.title.$dirty">
-      Nimi on pakollinen!
-    </div>
-  </p>
+  <div class="form-group" ng-class="{ 'has-error': movieForm.title.$invalid }">
+    <label for="title">Nimi</label>
+    <input type="text" ng-model="movie.title" class="form-control" id="title" required>
+  </div>
+  <div ng-show="movieForm.title.$invalid && movieForm.title.$dirty">
+    Nimi on pakollinen!
+  </div>
 
-  <p>
-    <label>
-      Vuosi:
-      <input type="number" min="1900" max="2100" ng-model="movie.year" required>
-    </label>
-    <div ng-show="movieForm.title.$invalid && movieForm.title.$dirty">
-      Vuosi on pakollinen!
-    </div>
-  </p>
+  <div class="form-group" ng-class="{ 'has-error': movieForm.director.$invalid }">
+    <label for="director">Ohjaaja</label>
+    <input type="text" ng-model="movie.director" class="form-control" id="director" required>
+  </div>
+  <div ng-show="movieForm.director.$invalid && movieForm.director.$dirty">
+    Ohjaaja on pakollinen!
+  </div>
 
-  <p>
-    <label>
-      Ohjaaja:
-      <input type="text" ng-model="movie.director" required>
-    </label>
-    <div ng-show="movieForm.title.$invalid && movieForm.title.$dirty">
-      Ohjaaja on pakollinen!
-    </div>
-  </p>
+  <div class="form-group" ng-class="{ 'has-error': movieForm.year.$invalid }">
+    <label for="year">Vuosi</label>
+    <input type="number" min="1900" max="2100" ng-model="movie.year" class="form-control" id="year" required>
+  </div>
+  <div ng-show="movieForm.year.$invalid && movieForm.year.$dirty">
+    Vuosi on pakollinen!
+  </div>
 
-  <p>
-    <label>
-      Kuvaus:
-      <textarea ng-model="movie.description" required></textarea>
-    </label>
-    <div ng-show="movieForm.title.$invalid && movieForm.title.$dirty">
-      Kuvaus on pakollinen!
-    </div>
-  </p>
+  <div class="form-group" ng-class="{ 'has-error': movieForm.description.$invalid }">
+    <label for="description">Kuvaus</label>
+    <textarea ng-model="movie.description" class="form-control" id="description" required></textarea>
+  </div>
+  <div ng-show="movieForm.description.$invalid && movieForm.description.$dirty">
+    Kuvaus on pakollinen!
+  </div>
 
-  <input type="submit" value="Lisää" ng-click="addMovie()" ng-disabled="movieForm.$invalid">
+  <input type="submit" value="Lisää" class="btn btn-primary" ng-click="addMovie()" ng-disabled="movieForm.$invalid">
 </form>

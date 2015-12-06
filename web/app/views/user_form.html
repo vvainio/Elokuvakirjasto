@@ -1,26 +1,24 @@
-<form name="userForm">
-  <p>
-    <label>
-      Sähköpostiosoite:
-      <input type="email" ng-model="email" required>
-    </label>
-    <div ng-show="userForm.email.$invalid && userForm.email.$dirty">
-      Sähköpostiosoite on pakollinen!
-    </div>
-  </p>
+<h1>Kirjaudu sisään tai rekisteröidy</h1>
 
-  <p>
-    <label>
-      Salasana:
-      <input type="password" ng-model="password" required>
-    </label>
-    <div ng-show="userForm.password.$invalid && userForm.password.$dirty">
-      Salasana on pakollinen!
-    </div>
-  </p>
+<form name="userForm">
+  <div class="form-group" ng-class="{ 'has-error': userForm.email.$invalid }">
+    <label for="email">Sähköpostiosoite</label>
+    <input type="email" ng-model="email" class="form-control" id="email" required>
+  </div>
+  <div ng-show="userForm.email.$invalid && userForm.email.$dirty">
+    Sähköpostiosoite on pakollinen!
+  </div>
+
+  <div class="form-group" ng-class="{ 'has-error': userForm.password.$invalid }">
+    <label for="password">Salasana</label>
+    <input type="password" ng-model="password" class="form-control" id="password" required>
+  </div>
+  <div ng-show="userForm.password.$invalid && userForm.password.$dirty">
+    Salasana on pakollinen!
+  </div>
 
   <p>{{message}}</p>
 
-  <input type="submit" value="Kirjaudu sisään" ng-click="logIn()" ng-disabled="userForm.$invalid">
-  <input type="submit" value="Rekisteröidy" ng-click="register()" ng-disabled="userForm.$invalid">
+  <input type="submit" class="btn btn-primary" value="Kirjaudu sisään" ng-click="logIn()" ng-disabled="userForm.$invalid">
+  <input type="submit" class="btn btn-default" value="Rekisteröidy" ng-click="register()" ng-disabled="userForm.$invalid">
 </form>

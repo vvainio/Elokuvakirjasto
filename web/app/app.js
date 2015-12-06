@@ -47,6 +47,10 @@ movieApp.config(function ($httpProvider) {
 });
 
 movieApp.run(function (AuthenticationService, $rootScope, $location) {
+  $rootScope.logIn = function () {
+    $location.path('/login');
+  };
+
   $rootScope.logOut = function() {
     AuthenticationService.logOut();
     delete $rootScope.isLoggedIn;

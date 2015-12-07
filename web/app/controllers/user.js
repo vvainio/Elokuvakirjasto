@@ -20,6 +20,7 @@ movieApp.controller('UserCtrl', function ($rootScope, $scope, $location, Authent
       AuthenticationService.logIn($scope.email, $scope.password)
       .then(function () {
         $location.path('/movies');
+        $rootScope.isLoggedIn = AuthenticationService.currentUser();
       });
     })
     .catch(function () {
